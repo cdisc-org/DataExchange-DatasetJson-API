@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: Dataset-JSON API
+  description: CDISC Dataset-JSON REST API specification
+  version: '0.0.1'
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+
+paths:
+  /studies:
+    get:
+      summary: Returns a list of Studies
+      description: The studies returns a list of studies to which the requester has access.
+      operationId: read_studies_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudyListItem'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+
+  /studies/{studyOid}:
+    get:
+      summary: Returns a study
+      description: Returns details for a specific study
+      operationId: read_study_get
+      parameters:
+        - name: studyOid
+          in: path
+          required: true
+          schema:
+            type: string
+            description: the StudyOID
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/StudyListItem'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+
+
+  /studies/{studyOid}/datasets:
+    get:
+      summary: Return a list of datasets
+      description: Return list of all available datasets for a study
+      operationId: read_dataset_list_get
+      parameters:
+        - name: studyOid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatasetListItem'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+
+  /studies/{studyOid}/datasets/{datasetOid}:
+    get:
+      summary: Return a dataset
+      description: Return a specified Dataset-JSON dataset
+      operationId: read_dataset_get
+      parameters:
+        - name: studyOid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: datasetOid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+
+components:
+  parameters:
+    studyOid:
+      name: studyOid
+      in: path
+      required: true
+      schema:
+        type: string
+    datasetOid:
+      name: datasetOid
+      in: path
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    StudyListItem:
+      type: object
+      properties:
+        studyOid:
+          type: string
+          title: Study OID
+        name:
+          type: string
+          title: Study Name
+        label:
+          type: string
+          title: Study Label
+        href:
+          type: string
+          format: uri
+          title: Link to study datasets
+
+    DatasetListItem:
+      type: object
+      properties:
+        href:
+          type: string
+          title: href
+          format: uri
+        name:
+          type: string
+          title: Name
+        label:
+          type: string
+          title: label
+        records:
+          type: integer
+          title: records
+        creationDateTime:
+          type: string
+          title: Creation DateTime
+          format: date-time
