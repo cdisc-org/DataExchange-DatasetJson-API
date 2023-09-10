@@ -45,9 +45,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/StudyListItem'
+                $ref: '#/components/schemas/StudyListItem'
         '400':
           description: Bad Request
         '401':
@@ -65,6 +63,13 @@ paths:
           required: true
           schema:
             type: string
+        - name: creationDate
+          in: query
+          required: false
+          description: datasets on or after the creation date
+          schema:
+            type: string
+            format: date
       responses:
         '200':
           description: Successful Response
@@ -95,9 +100,35 @@ paths:
           required: true
           schema:
             type: string
+        - name: metadataonly
+          in: query
+          description: return only dataset metadata
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: offset
+          in: query
+          description: return data starting at row number offset + 1
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: limit
+          in: query
+          description: maximum number of rows to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
       responses:
         '200':
           description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
         '400':
           description: Bad Request
         '401':
@@ -141,18 +172,156 @@ components:
       properties:
         href:
           type: string
-          title: href
           format: uri
         name:
           type: string
-          title: Name
         label:
           type: string
-          title: label
         records:
           type: integer
-          title: records
         creationDateTime:
           type: string
-          title: Creation DateTime
           format: date-time
+
+    clinicalData:
+      type: object
+      properties:
+        clinicalData:
+          type: object
+          properties:
+            studyOID:
+              type: string
+            metaDataVersionOID:
+              type: string
+            metaDataRef:
+              type: string
+              format: uri
+            itemGroupData:
+              type: object
+              additionalProperties:
+                oneOf:
+                  - $ref: '#/components/schemas/itemGroupData'
+                  - $ref: '#/components/schemas/itemGroupMetadata'
+              minProperties: 1
+              maxProperties: 1
+      required:
+        - itemGroupData
+
+    referenceData:
+      type: object
+      properties:
+        referenceData:
+          type: object
+          properties:
+            studyOID:
+              type: string
+            metaDataVersionOID:
+              type: string
+            metaDataRef:
+              type: string
+              format: uri
+            itemGroupData:
+              type: object
+              additionalProperties:
+                oneOf:
+                  - $ref: '#/components/schemas/itemGroupData'
+                  - $ref: '#/components/schemas/itemGroupMetadata'
+              minProperties: 1
+              maxProperties: 1
+      required:
+        - referenceData
+
+    itemGroupData:
+      type: object
+      properties:
+        records:
+          type: integer
+        name:
+          type: string
+        label:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/item'
+        itemData:
+          type: array
+          items:
+            anyOf:
+              - type: string
+                nullable: true
+              - type: integer
+                nullable: true
+      required:
+        - records
+        - name
+        - label
+        - items
+        - itemData
+
+    itemGroupMetadata:
+      type: object
+      properties:
+        records:
+          type: integer
+        name:
+          type: string
+        label:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/item'
+      required:
+        - records
+        - name
+        - label
+        - items
+
+    item:
+      type: object
+      properties:
+        OID:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: ["string", "integer", "decimal", "float", "double", "boolean"]
+        length:
+          type: integer
+        displayFormat:
+          type: string
+        keySequence:
+          type: integer
+      required:
+        - OID
+        - name
+        - label
+        - type
+
+    Dataset:
+      type: object
+      properties:
+        creationDateTime:
+          type: string
+          format: date-time
+        datasetJSONVersion:
+          type: string
+        fileOID:
+          type: string
+        asOfDateTime:
+          type: string
+          format: date-time
+        originator:
+          type: string
+        sourceSystem:
+          type: string
+        sourceSystemVersion:
+          type: string
+      oneOf:
+        - $ref: '#/components/schemas/clinicalData'
+        - $ref: '#/components/schemas/referenceData'
+      required:
+        - creationDateTime
+        - datasetJSONVersion
