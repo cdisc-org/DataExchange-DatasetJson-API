@@ -12,6 +12,9 @@ Note: The openapi/dataset-json-api.yaml has been deprecated and replaced by open
 The main purpose of *DataExchange-DatasetJson-API* is to create a draft API specification for Dataset-JSON and 
 proof-of-concept implementations to demonstrate and test the API specification.
 
+To review the HTML specification document, clone this repository so that the swagger-ui folder is available as this
+content is needed to properly render the HTML document.
+
 ## Contribution
 
 Contribution is very welcome. When you contribute to this repository you are doing so under the below licenses. 
