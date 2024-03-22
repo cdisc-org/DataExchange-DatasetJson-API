@@ -1,11 +1,9 @@
 # DataExchange-DatasetJson-API
 
-This repo will be used to collaboratively author a Dataset-JSON API specification as part of a 6-week hackathon that 
-will subsequently be fed to the standards team.
+This repo will be used to collaboratively author a Dataset-JSON API specification as part of a 6-week COSA hackathon 
+that will subsequently be fed to the Dataset-JSON standards team.
 
 To review the Dataset-JSON API specification use the HTML version named dataset-json-api.html.
-
-Note: The openapi/dataset-json-api.yaml has been deprecated and replaced by openapi/dataset-json-api.json.
 
 ## Description
 
@@ -13,12 +11,22 @@ The main purpose of *DataExchange-DatasetJson-API* is to create a draft API spec
 proof-of-concept implementations to demonstrate and test the API specification.
 
 To review the HTML specification document, clone this repository so that the swagger-ui folder is available as this
-content is needed to properly render the HTML document.
+content is needed to properly render the HTML document. The API endpoints, payloads, and other details are available
+in the HTML specification. Please add any comments or issues into the GitHub repository under Discussions or Issues.
+
+The API specification has been developed using the machine-readable 
+[Open API Specification (OAS) 3.1 standard](https://github.com/OAI/OpenAPI-Specification). API specifications in OAS 
+format can be used to generate documentation as well as to generate code for API clients. 
+Check out this [list of OAS tools](https://openapi.tools/). 
+
+For those that might be interested in generating content using the API specification, see the JSON version in the 
+openapi folder. The dataset-json-api.json file contains the machine-readable specification used to generate the 
+HTML documentation file (dataset-json-api.html).
 
 ## Contribution
 
-Contribution is very welcome. When you contribute to this repository you are doing so under the below licenses. 
-Please checkout [Contribution](CONTRIBUTING.md) for additional information. All contributions must adhere to the 
+Contribution is very welcome. When you contribute to this repository you are doing so under the licenses below. 
+Please check out [Contribution](CONTRIBUTING.md) for additional information. All contributions must adhere to the 
 following [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
@@ -32,18 +40,13 @@ This project is using the [MIT](http://www.opensource.org/licenses/MIT "The MIT 
 
 ### Content
 
-The content files like documentation and minutes are released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). This does not include 
-trademark permissions.
+Documentation content files are released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). This does not include trademark permissions.
 
 ## Re-use
 
-When you re-use the source, keep or copy the license information also in the source code files. When you re-use the 
-source in proprietary software or distribute binaries (derived or underived), copy additionally the license text to 
-a third-party-licenses file or similar.
-
 When you want to re-use and refer to the content, please do so like the following:
 
-> Content based on [Project XY (GitHub)](https://github.com/xy/xy) used under the [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) license.
+> Content based on [Dataset-JSON API (GitHub)](https://github.com/cdisc-org/DataExchange-DatasetJson-API) used under the [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) license.
 
 
 
