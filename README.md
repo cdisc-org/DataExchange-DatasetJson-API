@@ -1,14 +1,14 @@
 # DataExchange-DatasetJson-API
 
-This repo will be used to collaboratively author a Dataset-JSON API specification as part of a 6-week COSA hackathon 
-that will subsequently be fed to the Dataset-JSON standards team.
+This repo will was originally used to collaboratively author a Dataset-JSON API specification as part of a 6-week COSA hackathon 
+that will subsequently be fed to the Dataset-JSON standards team. As an outcome of the COSA hackathon, we now have a draft API specification
+available for review.
 
 To review the Dataset-JSON API specification use the HTML version named dataset-json-api.html.
 
 ## Description
 
-The main purpose of *DataExchange-DatasetJson-API* is to create a draft API specification for Dataset-JSON and 
-proof-of-concept implementations to demonstrate and test the API specification.
+The main purpose of *DataExchange-DatasetJson-API* is to create an API specification for Dataset-JSON.
 
 To review the HTML specification document, clone this repository so that the swagger-ui folder is available as this
 content is needed to properly render the HTML document. The API endpoints, payloads, and other details are available
@@ -25,7 +25,7 @@ HTML documentation file (dataset-json-api.html).
 
 ## Contribution
 
-Contribution is very welcome. When you contribute to this repository you are doing so under the licenses below. 
+Contributions are welcome. When you contribute to this repository you are doing so under the licenses below. 
 Please check out [Contribution](CONTRIBUTING.md) for additional information. All contributions must adhere to the 
 following [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -47,7 +47,3 @@ Documentation content files are released under [CC-BY-4.0](https://creativecommo
 When you want to re-use and refer to the content, please do so like the following:
 
 > Content based on [Dataset-JSON API (GitHub)](https://github.com/cdisc-org/DataExchange-DatasetJson-API) used under the [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) license.
-
-
-
-
