@@ -1,27 +1,30 @@
 # DataExchange-DatasetJson-API
+This repository contains the Dataset-JSON API Specification v1.0 and associated User Guide. This API standard complements
+the [Dataset-JSON CDISC Data Exchange standard](https://github.com/cdisc-org/DataExchange-DatasetJson). 
 
-This repo will was originally used to collaboratively author a Dataset-JSON API specification as part of a 6-week COSA hackathon 
-that will subsequently be fed to the Dataset-JSON standards team. As an outcome of the COSA hackathon, we now have a draft API specification
-available for review.
+To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0.html). 
 
-To review the Dataset-JSON API specification use the HTML version named dataset-json-api.html.
+To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0-ug.md).
+
+To review the Dataset-JSON API Specification as OAS, see the JSON version [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/openapi/dataset-json-api-1-0.json). 
 
 ## Description
+The main purpose of *DataExchange-DatasetJson-API* is to create a standard API specification for exchanging 
+Dataset-JSON datasets.
 
-The main purpose of *DataExchange-DatasetJson-API* is to create an API specification for Dataset-JSON.
+The API endpoints, payloads, and other details are available in the JSON and HTML versions of the specification. 
+The User Guide provides additional information useful to client and server API implementers.
 
-To review the HTML specification document, clone this repository so that the swagger-ui folder is available as this
-content is needed to properly render the HTML document. The API endpoints, payloads, and other details are available
-in the HTML specification. Please add any comments or issues into the GitHub repository under Discussions or Issues.
+Please add any comments or issues into the GitHub repository under Discussions or Issues, respectively.
 
-The API specification has been developed using the machine-readable 
-[Open API Specification (OAS) 3.1 standard](https://github.com/OAI/OpenAPI-Specification). API specifications in OAS 
-format can be used to generate documentation as well as to generate code for API clients. 
-Check out this [list of OAS tools](https://openapi.tools/). 
+The API specification has been developed using the machine-readable
+[Open API Specification (OAS) 3.1 standard](https://github.com/OAI/OpenAPI-Specification). API specifications in OAS format can be used to generate 
+documentation as well as to generate code for API clients. Check out this [list of OAS tools](https://openapi.tools/). 
 
-For those that might be interested in generating content using the API specification, see the JSON version in the 
-openapi folder. The dataset-json-api.json file contains the machine-readable specification used to generate the 
-HTML documentation file (dataset-json-api.html).
+For those interested in generating content using the API specification, see the JSON version in the 
+openapi folder. The [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/openapi/dataset-json-api-1-0.json) 
+file contains the machine-readable specification used to generate the HTML documentation file 
+[dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0.html).
 
 ## Contribution
 
@@ -35,15 +38,13 @@ following [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ### Code & Scripts
 
-This project is using the [MIT](http://www.opensource.org/licenses/MIT "The MIT License | Open Source Initiative") license 
-(see [`LICENSE`](LICENSE)) for code and scripts.
+This project uses the [MIT](http://www.opensource.org/licenses/MIT "The MIT License | Open Source Initiative") license 
+(see [`LICENSE`](LICENSE)) for code, schemas, models, JSON-based specifications, and scripts.
 
 ### Content
-
 Documentation content files are released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). This does not include trademark permissions.
 
 ## Re-use
-
 When you want to re-use and refer to the content, please do so like the following:
 
 > Content based on [Dataset-JSON API (GitHub)](https://github.com/cdisc-org/DataExchange-DatasetJson-API) used under the [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) license.
