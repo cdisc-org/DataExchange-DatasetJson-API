@@ -1,12 +1,12 @@
 # DataExchange-DatasetJson-API
 This repository contains the Dataset-JSON API Specification v1.0 and associated User Guide. This API standard complements
 the [Dataset-JSON CDISC Data Exchange standard](https://github.com/cdisc-org/DataExchange-DatasetJson). 
+doc/dataset-json-api-1-0.html
+To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html). 
 
-To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0.html). 
+To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0-ug.md).
 
-To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0-ug.md).
-
-To review the Dataset-JSON API Specification as OAS, see the JSON version [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/openapi/dataset-json-api-1-0.json). 
+To review the Dataset-JSON API Specification as OAS, see the JSON version [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json). 
 
 ## Description
 The main purpose of *DataExchange-DatasetJson-API* is to create a standard API specification for exchanging 
@@ -22,9 +22,9 @@ The API specification has been developed using the machine-readable
 documentation as well as to generate code for API clients. Check out this [list of OAS tools](https://openapi.tools/). 
 
 For those interested in generating content using the API specification, see the JSON version in the 
-openapi folder. The [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/openapi/dataset-json-api-1-0.json) 
+openapi folder. The [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json) 
 file contains the machine-readable specification used to generate the HTML documentation file 
-[dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/doc/dataset-json-api-1-0.html).
+[dataset-json-api-1-0.html](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html).
 
 ## Contribution
 
@@ -39,7 +39,7 @@ following [Code of Conduct](CODE_OF_CONDUCT.md).
 ### Code & Scripts
 
 This project uses the [MIT](http://www.opensource.org/licenses/MIT "The MIT License | Open Source Initiative") license 
-(see [`LICENSE`](LICENSE)) for code, schemas, models, JSON-based specifications, and scripts.
+(see [`LICENSE`](LICENSE.md)) for code, schemas, models, JSON-based specifications, and scripts.
 
 ### Content
 Documentation content files are released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). This does not include trademark permissions.
