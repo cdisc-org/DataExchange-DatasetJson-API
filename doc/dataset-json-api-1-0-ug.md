@@ -12,7 +12,7 @@ GitHub repository](https://github.com/cdisc-org/DataExchange-DatasetJson).
 ## Open API Specification
 The primary technical documentation for the Dataset-JSON API is found in the 
 [Open API Specification 3.1 (OAS) for the Dataset-JSON API](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json).
-An [HTML version of the specification](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html) 
+An [HTML version of the specification](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html) 
 has been generated as a human-readable representation. The machine-readable JSON version of the OAS Dataset-JSON API 
 specification includes a machine-readable representation of the endpoints and JSON payload that may be used by code
 generators to create basic client and server software.
