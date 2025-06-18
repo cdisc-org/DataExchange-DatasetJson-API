@@ -39,7 +39,7 @@ following [Code of Conduct](CODE_OF_CONDUCT.md).
 ### Code & Scripts
 
 This project uses the [MIT](http://www.opensource.org/licenses/MIT "The MIT License | Open Source Initiative") license 
-(see [`LICENSE`](LICENSE)) for code, schemas, models, JSON-based specifications, and scripts.
+(see [`LICENSE`](LICENSE.md)) for code, schemas, models, JSON-based specifications, and scripts.
 
 ### Content
 Documentation content files are released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). This does not include trademark permissions.
