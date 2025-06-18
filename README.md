@@ -2,9 +2,9 @@
 This repository contains the Dataset-JSON API Specification v1.0 and associated User Guide. This API standard complements
 the [Dataset-JSON CDISC Data Exchange standard](https://github.com/cdisc-org/DataExchange-DatasetJson). 
 doc/dataset-json-api-1-0.html
-To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html). 
+To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0.html). 
 
-To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0-ug.md).
+To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0-ug.md).
 
 To review the Dataset-JSON API Specification as OAS, see the JSON version [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json). 
 
@@ -24,7 +24,7 @@ documentation as well as to generate code for API clients. Check out this [list 
 For those interested in generating content using the API specification, see the JSON version in the 
 openapi folder. The [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json) 
 file contains the machine-readable specification used to generate the HTML documentation file 
-[dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/doc/dataset-json-api-1-0.html).
+[dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0.html).
 
 ## Contribution
 
