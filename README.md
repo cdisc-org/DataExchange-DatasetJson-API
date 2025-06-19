@@ -1,7 +1,7 @@
 # DataExchange-DatasetJson-API
 This repository contains the Dataset-JSON API Specification v1.0 and associated User Guide. This API standard complements
-the [Dataset-JSON CDISC Data Exchange standard](https://github.com/cdisc-org/DataExchange-DatasetJson). 
-doc/dataset-json-api-1-0.html
+the [Dataset-JSON CDISC Data Exchange standard](https://github.com/cdisc-org/DataExchange-DatasetJson).
+
 To review the Dataset-JSON API Specification, use the HTML version [dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0.html). 
 
 To review the Dataset-JSON API User Guide, see the Markdown version [dataset-json-api-1-0-ug](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0-ug.md).
