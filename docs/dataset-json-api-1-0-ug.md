@@ -1,4 +1,10 @@
-# Dataset-JSON v1.1 REST API User Guide
+# Dataset-JSON REST API v1.0 User Guide
+
+| Date         | Version | Summary of Changes |
+|--------------|---------|--------------------|
+| 2025-08-07	| 1.0	  | Draft              |   
+
+## Introduction
 This User Guide (UG) complements the Dataset-JSON API Specification published as HTML and JSON in the
 [Dataset-JSON API GitHub repository](https://github.com/cdisc-org/DataExchange-DatasetJson-API). This UG provides 
 additional information to aid those implementing Dataset-JSON APIs.
@@ -31,19 +37,19 @@ EDC system implementing the API may allow clients to retrieve datasets, but not 
 
 Systems must implement all required elements of the specification to be conformant. For a read-only implementation, this means
 implementing each GET request completely to include all required parameters and features. CRUD implementations must
-implement all verbs with all required parameters and features in the specification.
+implement all verbs with all the required parameters and features documented in the specification.
 
 ## REST API
 The Dataset-JSON API is a REST-based API specification. REST, or 
-[Representational State Transfer](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm), is architectural style for 
+[Representational State Transfer](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm), is an architectural style for 
 distributed hypermedia systems first presented in Roy Fielding's 2000 dissertation. REST is the most widely implemented 
 architecture for building web-based APIs.  
 
 ## HTTP Verbs
 * GET is used to retrieve content such as a list of studies, a study, a list of datasets, or a dataset
 * POST is used to create a new study or dataset
-* PUT is used to update an entire study or dataset
-* PATCH is used to append a data rows to a dataset
+* PUT is used to update a study or dataset
+* PATCH is used to append data rows to a dataset
 * DELETE is used to soft delete a study or dataset
 
 ## JSON and NDJSON
@@ -69,25 +75,25 @@ https://dsjapi.net/
 ```
 
 ## Usage Examples
-Replace the host and port to match the API implementation. The api_key used in the examples must be replaced with a 
-valid key.
+In the following examples, replace the host and port listed to match your API implementation. The api_key used in the 
+examples must be replaced with a valid key.
 
 ### Read-only API Examples
-| Description                                                                        | Description                                                                                                          |
-|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| GET the about resource                                                   | curl http://127.0.0.1:8000/about                                                                                     |
-| GET the home resource (html page)                                        | curl http://127.0.0.1:8000/                                                                                          |
-| GET the current list of studies                                          | curl http://127.0.0.1:8000/studies                                                                                   |
-| GET a specific study                                                     | curl http://127.0.0.1:8000/studies/CDISCPILOT01                                                                      |
-| GET the list of datasets for a specified study                           | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets                                                             |
-| GET the list of datasets for a specified study and filter by datetime    | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets -H "IF-Modified-Since: 2024-01-10T20:38:47"                 |
-| GET the list of datasets with a standard filter of sdtmig                | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets?standard=sdtmig                                             |
-| GET the list of datasets for a study and filter by datetime and standard | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets?standard=sdtmig -H "IF-Modified-Since: 2024-01-10T20:38:47" |
-| GET the IG.AE dataset                                                    | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE                                                       |
-| GET the IG.AE dataset with IF-Modified-Since same as creationDateTime    | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE -i -H "IF-Modified-Since: 2024-01-10T20:38:47"        |
-| GET gzipped content                                                      | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets/IG.DD?standard=sdtmig -H "Accept-Encoding: gzip, deflate"   |
-| GET dataset metadata only                                                | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?metadataonly=True                                     |
-| GET page of data using offset and limit                                  | curl "http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?offset=10&limit=40"                                  |
+| Description                                                                        | Description                                                                                                                                                             |
+|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GET the about resource                                                   | curl http://127.0.0.1:8000/about -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                                                     |
+| GET the home resource (html page)                                        | curl http://127.0.0.1:8000/ -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                                                          |
+| GET the current list of studies                                          | curl http://127.0.0.1:8000/studies -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                                                   |
+| GET a specific study                                                     | curl http://127.0.0.1:8000/studies/CDISCPILOT01 -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                                      |
+| GET the list of datasets for a specified study                           | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                             |
+| GET the list of datasets for a specified study and filter by datetime    | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets -H "IF-Modified-Since: 2024-01-10T20:38:47" -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                 |
+| GET the list of datasets with a standard filter of sdtmig                | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets?standard=sdtmig -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                             |
+| GET the list of datasets for a study and filter by datetime and standard | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets?standard=sdtmig -H "IF-Modified-Since: 2024-01-10T20:38:47" -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a" |
+| GET the IG.AE dataset                                                    | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                                       |
+| GET the IG.AE dataset with IF-Modified-Since same as creationDateTime    | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE -i -H "IF-Modified-Since: 2024-01-10T20:38:47" -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"        |
+| GET gzipped content                                                      | curl http://127.0.0.1:8000/studies/CDISCPILOT02/datasets/IG.DD?standard=sdtmig -H "Accept-Encoding: gzip, deflate" -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"   |
+| GET dataset metadata only                                                | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?metadataonly=True -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                     |
+| GET page of data using offset and limit                                  | curl http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?offset=10&limit=40 -H "api-key: x1y62c5b-e29d-8fa5-af31-63c2be65681a"                                    |
 
 ### Write, Update, Append, Delete API Examples
 | Description                                                  | Description                                                                                                                                                                                                                                                    |
@@ -106,7 +112,7 @@ all required endpoints. A full CRUD API is optional.
 
 A few API features are optional, and a server does not need to support them to be conformant.
 - Multiple environments
-- Dataset versioning
+- Dataset versions
 - Define-XML retrieval
 
 If a server does not implement an optional endpoint, it should return a 501 status code to indicate to the client that
@@ -125,43 +131,99 @@ Each environment serves datasets that are undergoing QA, UAT, or Production. Not
 multiple environments, so this strategy only applies to those interested in having the API serve datasets from different
 environments.
 
-### Working with Dataset Versions
+### Dataset Versions
+By default, the Dataset-JSON API maintains only the most recent version of each dataset within a study. However, 
+the API optionally supports a **snapshot** mechanism that creates a versioned state of a study’s 
+datasets. A snapshot captures and preserves the state of all datasets in a study at a specific point in time, 
+allowing clients to reference or retrieve historical versions for purposes such as auditing, comparison, or archival.
 
-By default, a Dataset-JSON API returns the latest version of each available dataset. 
-Optionally, API implementers may add a version query parameter to request a specific version of a dataset. The version
-API feature is optional. It is not required to be conformant with the Dataset-JSON API standard.
-
-The _version_ query parameter may be added to the following endpoints:
-- /studies/{StudyOID}/datasets
-- /studies/{StudyOID}/datasets/{ItemGroupOID}
-
-The value of the _version_ query parameter is either "all" or a specific version such as "1". For example:
+Snapshots are created via the `snapshot` endpoint using the HTTP `POST` method. The client must provide a 
+unique `label` to identify the snapshot. For example:
 ```
-http://127.0.0.1:8000/studies/CDISCPILOT01/datasets?version="all"
-http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?version="all"
-http://127.0.0.1:8000/studies/CDISCPILOT01/datasets?version="1"
-http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE?version="1"
+POST /studies/{studyOID}/snapshots?label=draft
 ```
 
-The value of dataset version text is not constrained to a specific format, and any text string implemented by the server
-to indicate the dataset version may be used.
+When a snapshot is created, the API generates an immutable copy of the study and all associated datasets as they 
+exist at the moment of the request. The number of snapshots that may be created is not limited by the 
+specification, though API implementations may impose such limits.
 
-### Retrieving the Define-XML Content
-The Study response object includes the _metaDataRef_ attribute that provides a URI to the Define-XML metadata. For
-example, the URI could be a URL to download a define.xml file or an endpoint to get the metadata via a REST API.
-Implementing the metaDataRef attribute is optional. It is not required to conform with the Dataset-JSON API standard. 
-Not all data providers that implement a Dataset-JSON API will produce the Define-XML metadata. The Dataset-JSON
-API specification does not specify how a metaDataRef URI functions to retrieve the Define-XML metadata.
+To get a list of all the available snapshots for a given study, use the following endpoint:
+```
+GET /studies/{studyOID}/snapshots
+```
+
+To retrieve a specific snapshot, the client issues a `GET` request to the snapshot endpoint with the label
+identifier:
+```
+GET /studies/{studyOID}/snapshots/{label}
+```
+
+This request returns the study metadata and datasets as they were at the time the snapshot was created.
+
+Snapshot labels are client-defined and must be **unique within the context of a study**. Labels may be any 
+valid UTF-8 string. Examples include:
+```
+"dry run"
+"draft"
+"final"
+"dmc"
+```
+
+Example URLs for retrieving specific snapshot versions:
+```
+GET http://127.0.0.1:8000/studies/CDISCPILOT01/snapshots/dry%20run
+GET http://127.0.0.1:8000/studies/CDISCPILOT01/snapshots/draft
+GET http://127.0.0.1:8000/studies/CDISCPILOT01/snapshots/final
+GET http://127.0.0.1:8000/studies/CDISCPILOT01/snapshots/dmc
+```
+
+> **Note:** Support for snapshot/versioning functionality is optional. API implementations are not required to support this feature to be conformant with the Dataset-JSON API standard.
+
+### Retrieving the Define-XML
+The Study resource may include a metaDataRef attribute, which contains one or more URIs to the study’s Define-XML metadata. 
+A study can have multiple metaDataRef URIs; for example, separate Define-XML files for SDTM and ADaM standards.
+
+To retrieve all Define-XML files associated with a study:
+```
+GET /studies/{studyOID}/defines
+```
+The response returns an array of objects, each containing:
+- label: an identifier for the Define-XML (commonly the standard, e.g., sdtmig or adamig).
+- href: a URL to retrieve the Define-XML file.
+
+To retrieve a single Define-XML file:
+```
+GET /studies/{studyOID}/defines/{label}
+```
+
+The {label} path parameter corresponds to the label provided in the list response.
+
+To add a Define-XML to a study:
+```
+POST /studies/{studyOID}/defines
+```
+The request body for posting a new Define-XML:
+- label: identifies the standard or purpose of the Define-XML.
+- defineXML: contains the full XML content of the Define-XML.
+```
+{
+  "label": "sdtmig",
+  "defineXML": "<ODM> ... </ODM>"
+}
+```
+
+Implementing the `metaDataRef` attribute is optional. It is not required to conform with the Dataset-JSON API standard. 
+Not all data providers that implement a Dataset-JSON API will produce the Define-XML metadata.
 
 ## API Identifiers
-The Dataset-JSON API uses the StudyOID and ItemGroupOID as identifiers in the API. For example, to request a specific
-dataset the URL must contain the StudyOID and the ItemGroupOID to indicate the dataset of interest. Here's an example 
+The Dataset-JSON API uses the `StudyOID` and `ItemGroupOID` as identifiers in the API. For example, to request a specific
+dataset the URL must contain the `StudyOID` and the `ItemGroupOID` to indicate the dataset of interest. Here's an example 
 URL requesting the AE dataset for the CDISCPILOT01 study.
 ```
 http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE
 ```
 
-In the above example, the StudyOID is CDISCPILOT01 and the ItemGroupOID is IG.AE. Since these OIDs, also used in an 
+In the above example, the `StudyOID` is CDISCPILOT01 and the `ItemGroupOID` is IG.AE. Since these OIDs, also used in an 
 associated Define-XML file, are used in the URL, avoid using certain characters in the OIDs to better support usage in 
 a URL, such as:
 - '#' (fragment identifier)
@@ -175,15 +237,15 @@ a URL, such as:
 ## HATEOAS
 HATEOAS, or Hypertext As The Engine of Application State, means that a REST API must provide hypermedia links in its 
 responses, guiding clients through available actions and resources. The Dataset-JSON API does provide hyperlinks to inform
-clients of the available study and dataset resources. The API specification does not include a _links section to represent
+clients of the available study and dataset resources. The API specification does not include a `_links` section to represent
 the hyperlinks, but the relevant URLs are available in the body of the response. Many REST APIs, such as the
-CDISC Library, include a _links section, but it was not included in the Dataset-JSON API specification to simplify the 
+CDISC Library, include a `_links` section, but it was not included in the Dataset-JSON API specification to simplify the 
 API implementation. To support HATEOAS, the URLs are available in the body of the responses.
 
 ## Metadata and Data Only Flags
 Clients may request to receive only the dataset metadata or only the dataset data. By default, responses include the 
 metadata and data parts of the Dataset-JSON dataset. Depending on the usage scenario, it may be preferable to only 
-receive the metadata or the data, and metadataonly=True or dataonly=True query parameters make that possible. The entire 
+receive the metadata or the data, and `metadataonly=True` or `dataonly=True` query parameters make that possible. The entire 
 dataset is returned by default.
 
 ## HTTP Status Codes
@@ -203,22 +265,22 @@ dataset is returned by default.
 | 501         | Not implemented       | For optional features that are not supported by an implementation |
 
 ## Implementation Notes
-- If no datasets that match user specified criteria are found, a status code of 200 with content {'datasets': []} is returned
-- If a specific dataset is requested and not found, a 404 status code is returned
-- The standard filter is not case-sensitive so that standard=sdtmig and standard=SDTMIG are both valid query parameters.
+- If no datasets that match user specified criteria are found, a status code of 200 with content {'datasets': []} is returned.
+- If a specific dataset is requested and not found, a 404 status code is returned.
+- The standard filter is not case-sensitive so that `standard=sdtmig` and `standard=SDTMIG` are both valid query parameters.
 - The standard filters include: "sdtmig", "sendig", "adamig", and "other".
 - Gzip compression should be supported by API implementation. Alternative standard compression algorithms may also be used, such as Brotli or Zstandard.
-- After a dataset has been posted (created) the API returns the Study Dataset metadata, but not the full dataset that was posted
-- Full list of available HTTP status codes: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-- When posting a study or dataset that already exists, a 409 status code will be returned 
-- When requesting a dataset too large for the server to process, a 413 status code will be returned and the client may opt to re-send the request for a chunk of records instead of the entire dataset
-- When posting a dataset to a study that does not exist, a 422 status code will be returned
+- After a dataset has been posted (created) the API returns the Study Dataset metadata, but not the full dataset that was posted.
+- Full list of available HTTP status codes: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml.
+- When posting a study or dataset that already exists, a 409 status code will be returned. 
+- When requesting a dataset too large for the server to process, a 413 status code will be returned and the client may opt to re-send the request for a chunk of records instead of the entire dataset.
+- When posting a dataset to a study that does not exist, a 422 status code will be returned.
 - The Dataset-JSON API works with JSON, and does not support the exchange of NDJSON.
 
 ## Assumptions
-- The API standard focuses on data exchange over other use cases such as querying or creating slices, which may be added to an extended version of the API
-- A read-only API implementation is valid 
-- In practice, the API will not be supporting so many active studies at one time that a filter is needed on the studies returned
-- Most dataset retrievals will use gzip compression
+- The API standard focuses on data exchange over other use cases such as querying or creating slices, which may be added to an extended version of the API.
+- A read-only API implementation is valid. 
+- In practice, the API will not be supporting so many active studies at one time that a filter is needed on the studies returned.
+- Most dataset retrievals will use gzip compression.
 - Many APIs will never read or write to a Dataset-JSON file, but instead will read and write to a data store and only use Dataset-JSON to send and receive data from API clients.
-- The current API specification supports Dataset-JSON v1.1
+- The current API specification supports Dataset-JSON v1.1.
