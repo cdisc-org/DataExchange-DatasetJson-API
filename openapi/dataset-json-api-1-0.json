@@ -1503,17 +1503,6 @@
             "type": "string",
             "title": "Label"
           },
-          "version": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Version"
-          },
           "columns": {
             "items": {
               "$ref": "#/components/schemas/Column"
