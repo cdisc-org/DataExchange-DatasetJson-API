@@ -158,7 +158,13 @@ identifier:
 GET /studies/{studyOID}/snapshots/{label}
 ```
 
-This request returns the study metadata and datasets as they were at the time the snapshot was created.
+This request returns the study metadata and a list of datasets as they were at the time the snapshot was created.
+
+To get a specific snapshot dataset, use a URL from the list of datasets returned using the URL above. The snapshot 
+dataset URLs use the following format:
+```
+GET /studies/{studyOID}/snapshots/{label}/datasets/{datasetOID}
+```
 
 Snapshot labels are client-defined and must be **unique within the context of a study**. Labels may be any 
 valid UTF-8 string. Examples include:
@@ -271,6 +277,8 @@ dataset is returned by default.
 - The standard filters include: "sdtmig", "sendig", "adamig", and "other".
 - Gzip compression should be supported by API implementation. Alternative standard compression algorithms may also be used, such as Brotli or Zstandard.
 - After a dataset has been posted (created) the API returns the Study Dataset metadata, but not the full dataset that was posted.
+- When creating a new study, only the studyOID, name, label, and href are required. The standards attribute is optional.
+- After creating a new study, add datasets, snapshots, and defines using the appropriate endpoints.
 - Full list of available HTTP status codes: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml.
 - When posting a study or dataset that already exists, a 409 status code will be returned. 
 - When requesting a dataset too large for the server to process, a 413 status code will be returned and the client may opt to re-send the request for a chunk of records instead of the entire dataset.
