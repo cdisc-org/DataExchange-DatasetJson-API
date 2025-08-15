@@ -89,7 +89,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Study"
+                "$ref": "#/components/schemas/StudyRequest"
               }
             }
           }
@@ -193,7 +193,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Study"
+                "$ref": "#/components/schemas/StudyRequest"
               }
             }
           }
@@ -346,7 +346,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Study"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Snapshot"
+                  },
+                  "title": "Response Snapshots Studies  Studyoid  Snapshots Get"
                 }
               }
             }
@@ -455,6 +459,174 @@
         "responses": {
           "204": {
             "description": "No content"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/studies/{studyOID}/snapshots/{label}/datasets/{datasetOID}": {
+      "get": {
+        "summary": "Get a snapshot dataset",
+        "operationId": "dataset_studies__studyOID__snapshots__label__datasets__datasetOID__get",
+        "parameters": [
+          {
+            "name": "studyOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Studyoid"
+            }
+          },
+          {
+            "name": "label",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Label"
+            }
+          },
+          {
+            "name": "datasetOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Datasetoid"
+            }
+          },
+          {
+            "name": "metadataonly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": false,
+              "title": "Metadataonly"
+            }
+          },
+          {
+            "name": "dataonly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": false,
+              "title": "Dataonly"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": 0,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Api-Key"
+            }
+          },
+          {
+            "name": "accept-encoding",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "",
+              "title": "Accept-Encoding"
+            }
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "",
+              "title": "If-Modified-Since"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested snapshot dataset content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetJson"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -759,7 +931,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StudyDataset"
+                  "$ref": "#/components/schemas/DatasetJson"
                 }
               }
             }
@@ -1394,7 +1566,7 @@
               }
             ],
             "title": "Datasetjsoncreationdatetime",
-            "default": "2025-08-08T20:04:56.621918Z"
+            "default": "2025-08-15T13:27:34.605686Z"
           },
           "datasetJSONVersion": {
             "type": "string",
@@ -1728,7 +1900,7 @@
               }
             ],
             "title": "Studycreationdatetime",
-            "default": "2025-08-08T20:04:56.617910Z"
+            "default": "2025-08-15T13:27:34.602019Z"
           },
           "datasets": {
             "anyOf": [
@@ -1808,7 +1980,7 @@
               }
             ],
             "title": "Datasetjsoncreationdatetime",
-            "default": "2025-08-08T20:04:56.616044Z"
+            "default": "2025-08-15T13:27:34.598550Z"
           }
         },
         "type": "object",
@@ -1821,6 +1993,55 @@
         ],
         "title": "StudyDataset",
         "description": "Dataset metadata maintained for each dataset associated with a study "
+      },
+      "StudyRequest": {
+        "properties": {
+          "studyOID": {
+            "type": "string",
+            "title": "Studyoid"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "standards": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "sdtmig",
+                    "sendig",
+                    "adamig",
+                    "other"
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Standards"
+          },
+          "href": {
+            "type": "string",
+            "title": "Href"
+          }
+        },
+        "type": "object",
+        "required": [
+          "studyOID",
+          "name",
+          "label",
+          "href"
+        ],
+        "title": "StudyRequest",
+        "description": "Study metadata submitted when posting a new study "
       },
       "ValidationError": {
         "properties": {
