@@ -298,7 +298,7 @@ a URL, such as:
 - '%' (used for URL encoding)
 - '/' (path separator)
 
-## <a id="hateos">HATEOAS
+## <a id="hateoas">HATEOAS
 
 HATEOAS, or Hypertext As The Engine of Application State, means that a REST API must provide hypermedia links in its
 responses, guiding clients through available actions and resources. The Dataset-JSON API does provide hyperlinks to inform
@@ -416,13 +416,13 @@ dataset is returned by default.
     <tr>
       <td>URI</td>
       <td>
-        URI Uniform Resource Identifier
+        Uniform Resource Identifier
       </td>
     </tr>
     <tr>
       <td>URL</td>
       <td>
-        URI Uniform Resource Locator
+        Uniform Resource Locator
       </td>
     </tr>
   </tbody>
