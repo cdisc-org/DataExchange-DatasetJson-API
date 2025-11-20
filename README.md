@@ -17,16 +17,16 @@ To review the Dataset-JSON API Specification as OAS, see the JSON version [datas
 The main purpose of *DataExchange-DatasetJson-API* is to create a standard API specification for exchanging 
 Dataset-JSON datasets.
 
-The API endpoints, payloads, and other details are available in the JSON and HTML versions of the specification. 
-The User Guide provides additional information useful to client and server API implementers.
+The API endpoints, payloads, and other details are available in the API specification. 
+The User Guide provides additional information useful to API client and server implementers.
 
 Please add any comments or issues into the GitHub repository under Discussions or Issues, respectively.
 
 The API specification has been developed using the machine-readable
 [Open API Specification (OAS) 3.1 standard](https://github.com/OAI/OpenAPI-Specification). API specifications in OAS format can be used to generate 
-documentation as well as to generate code for API clients. Check out this [list of OAS tools](https://openapi.tools/). 
+documentation as well as to generate code for API clients and server. Check out this [list of OAS tools](https://openapi.tools/). 
 
-For those interested in generating content using the API specification, see the JSON version in the 
+For those interested in generating code or documentation using the API specification, see the JSON version in the 
 openapi folder. The [dataset-json-api-1-0.json](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json) 
 file contains the machine-readable specification used to generate the HTML documentation file 
 [dataset-json-api-1-0.html](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0.html).

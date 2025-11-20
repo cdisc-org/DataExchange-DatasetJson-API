@@ -51,7 +51,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Study"
+                    "$ref": "#/components/schemas/Studies"
                   },
                   "title": "Response Studies Studies Get"
                 }
@@ -278,7 +278,7 @@
           {
             "name": "label",
             "in": "query",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string",
               "title": "Label"
@@ -368,10 +368,10 @@
         }
       }
     },
-    "/studies/{studyOID}/snapshots/{label}": {
+    "/studies/{studyOID}/snapshots/{snapshotID}": {
       "get": {
         "summary": "Get a snapshot",
-        "operationId": "snapshot_studies__studyOID__snapshots__label__get",
+        "operationId": "snapshot_studies__studyOID__snapshots__snapshotID__get",
         "parameters": [
           {
             "name": "studyOID",
@@ -383,12 +383,12 @@
             }
           },
           {
-            "name": "label",
+            "name": "snapshotID",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Label"
+              "title": "Snapshotid"
             }
           },
           {
@@ -426,7 +426,7 @@
       },
       "delete": {
         "summary": "Delete a snapshot",
-        "operationId": "delete_snapshot_studies__studyOID__snapshots__label__delete",
+        "operationId": "delete_snapshot_studies__studyOID__snapshots__snapshotID__delete",
         "parameters": [
           {
             "name": "studyOID",
@@ -438,12 +438,12 @@
             }
           },
           {
-            "name": "label",
+            "name": "snapshotID",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Label"
+              "title": "Snapshotid"
             }
           },
           {
@@ -473,10 +473,10 @@
         }
       }
     },
-    "/studies/{studyOID}/snapshots/{label}/datasets/{datasetOID}": {
+    "/studies/{studyOID}/snapshots/{snapshotID}/datasets/{datasetOID}": {
       "get": {
         "summary": "Get a snapshot dataset",
-        "operationId": "dataset_studies__studyOID__snapshots__label__datasets__datasetOID__get",
+        "operationId": "dataset_studies__studyOID__snapshots__snapshotID__datasets__datasetOID__get",
         "parameters": [
           {
             "name": "studyOID",
@@ -488,12 +488,12 @@
             }
           },
           {
-            "name": "label",
+            "name": "snapshotID",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Label"
+              "title": "Snapshotid"
             }
           },
           {
@@ -1144,6 +1144,144 @@
         }
       }
     },
+    "/studies/{studyOID}/datasets/{datasetOID}/$export": {
+      "get": {
+        "summary": "Export a dataset to NDJSON (async)",
+        "operationId": "export_dataset_studies__studyOID__datasets__datasetOID___export_get",
+        "parameters": [
+          {
+            "name": "studyOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Studyoid"
+            }
+          },
+          {
+            "name": "datasetOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Datasetoid"
+            }
+          },
+          {
+            "name": "api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "A link to retrieve the exported NDJSON dataset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Link"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/studies/{studyOID}/datasets/{datasetOID}/ndjson": {
+      "get": {
+        "summary": "Download NDJSON dataset as a stream",
+        "operationId": "download_dataset_stream_studies__studyOID__datasets__datasetOID__ndjson_get",
+        "parameters": [
+          {
+            "name": "studyOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Studyoid"
+            }
+          },
+          {
+            "name": "datasetOID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Datasetoid"
+            }
+          },
+          {
+            "name": "api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Api-Key"
+            }
+          },
+          {
+            "name": "accept-encoding",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "",
+              "title": "Accept-Encoding"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NDJSON stream",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/DatasetJsonMetadata"
+                    },
+                    {
+                      "$ref": "#/components/schemas/OneRowData"
+                    }
+              ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/studies/{studyOID}/defines": {
       "post": {
         "summary": "Create a new Define-XML file",
@@ -1566,7 +1704,7 @@
               }
             ],
             "title": "Datasetjsoncreationdatetime",
-            "default": "2025-08-15T13:27:34.605686Z"
+            "default": "2025-11-17T20:09:33.999933Z"
           },
           "datasetJSONVersion": {
             "type": "string",
@@ -1683,8 +1821,11 @@
             "title": "Columns"
           },
           "rows": {
-            "items": {},
             "type": "array",
+            "items": {
+              "type": "array",
+              "items": {}
+            },
             "title": "Rows"
           }
         },
@@ -1699,6 +1840,148 @@
         ],
         "title": "DatasetJson",
         "description": "Dataset-JSON dataset model, including metadata and data "
+      },
+      "DatasetJsonMetadata": {
+        "properties": {
+          "datasetJSONCreationDateTime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datasetjsoncreationdatetime",
+            "default": "2025-11-17T20:09:33.999933Z"
+          },
+          "datasetJSONVersion": {
+            "type": "string",
+            "enum": [
+              "1.1",
+              "1.1.0",
+              "1.1.1",
+              "1.1.2",
+              "1.1.3",
+              "1.1.4",
+              "1.1.5"
+            ],
+            "title": "Datasetjsonversion"
+          },
+          "fileOID": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fileoid"
+          },
+          "dbLastModifiedDateTime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dblastmodifieddatetime"
+          },
+          "originator": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Originator"
+          },
+          "sourceSystem": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceSystem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "studyOID": {
+            "type": "string",
+            "title": "Studyoid"
+          },
+          "metaDataVersionOID": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadataversionoid"
+          },
+          "metaDataRef": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadataref"
+          },
+          "itemGroupOID": {
+            "type": "string",
+            "title": "Itemgroupoid"
+          },
+          "records": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Records",
+            "default": 0
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/Column"
+            },
+            "type": "array",
+            "title": "Columns"
+          }
+        },
+        "type": "object",
+        "required": [
+          "datasetJSONVersion",
+          "studyOID",
+          "itemGroupOID",
+          "name",
+          "label",
+          "columns"
+        ],
+        "title": "DatasetJson Metadata",
+        "description": "Dataset-JSON metadata model"
       },
       "DefinePayload": {
         "properties": {
@@ -1759,8 +2042,6 @@
           },
           "href": {
             "type": "string",
-            "minLength": 1,
-            "format": "uri",
             "title": "Href"
           }
         },
@@ -1775,8 +2056,11 @@
       "RowData": {
         "properties": {
           "rows": {
-            "items": {},
             "type": "array",
+            "items": {
+              "type": "array",
+              "items": {}
+            },
             "title": "Rows"
           }
         },
@@ -1784,22 +2068,44 @@
         "title": "RowData",
         "description": "Dataset-JSON records to append to an existing dataset "
       },
+      "OneRowData": {
+        "type": "array",
+        "items": {},
+        "title": "NDJSON RowData",
+        "description": "Dataset-NDJSON records to append to an existing dataset "
+      },
       "Snapshot": {
         "properties": {
           "label": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Label"
+          },
+          "snapshotID": {
+            "type": "string",
+            "title": "Snapshotid"
+          },
+          "snapshotCreationDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Snapshotcreationdatetime"
           },
           "href": {
             "type": "string",
-            "minLength": 1,
-            "format": "uri",
             "title": "Href"
           }
         },
         "type": "object",
         "required": [
           "label",
+          "snapshotID",
+          "snapshotCreationDateTime",
           "href"
         ],
         "title": "Snapshot",
@@ -1822,6 +2128,82 @@
           "version"
         ],
         "title": "SourceSystem"
+      },
+      "Studies": {
+        "properties": {
+          "studyOID": {
+            "type": "string",
+            "title": "Studyoid"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "standards": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "sdtmig",
+                    "sendig",
+                    "adamig",
+                    "other"
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Standards"
+          },
+          "href": {
+            "type": "string",
+            "title": "Href"
+          },
+          "metaDataRef": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/MetaDataRef"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadataref"
+          },
+          "studyCreationDateTime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Studycreationdatetime",
+            "default": "2025-11-17T20:09:33.995555Z"
+          }
+        },
+        "type": "object",
+        "required": [
+          "studyOID",
+          "name",
+          "label",
+          "href"
+        ],
+        "title": "Study",
+        "description": "Study metadata for each study with associated Dataset-JSON datasets "
       },
       "Study": {
         "properties": {
@@ -1900,7 +2282,7 @@
               }
             ],
             "title": "Studycreationdatetime",
-            "default": "2025-08-15T13:27:34.602019Z"
+            "default": "2025-11-17T20:09:33.995555Z"
           },
           "datasets": {
             "anyOf": [
@@ -1965,8 +2347,6 @@
           },
           "href": {
             "type": "string",
-            "minLength": 1,
-            "format": "uri",
             "title": "Href"
           },
           "datasetJSONCreationDateTime": {
@@ -1980,7 +2360,7 @@
               }
             ],
             "title": "Datasetjsoncreationdatetime",
-            "default": "2025-08-15T13:27:34.598550Z"
+            "default": "2025-11-17T20:09:33.993457Z"
           }
         },
         "type": "object",
@@ -2027,10 +2407,6 @@
               }
             ],
             "title": "Standards"
-          },
-          "href": {
-            "type": "string",
-            "title": "Href"
           }
         },
         "type": "object",
