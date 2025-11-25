@@ -1,11 +1,11 @@
-# Dataset-JSON REST API v1.0 User Guide
+# Dataset-JSON REST API Version 1.0 User Guide
 
 | Date         | Version | Summary of Changes |
 |--------------|---------|--------------------|
 | 2025-08-07   | 1.0     | Draft              |
 
 - [Introduction](#introduction)
-- [Open API Specification](#openapispecification)
+- [OpenAPI Specification](#openapispecification)
 - [API Implementations](#apiimplementations)
 - [REST API](#restapi)
 - [HTTP verbs](#httpverbs)
@@ -25,6 +25,7 @@
 - [HTTP Status Codes](#httpstatuscodes)
 - [Implementation Notes](#implementationnotes)
 - [Assumptions](#assumptions)
+- [References](#references)
 - [Glossary and Abbreviations](#glossaryandabbreviations)
 
 ## <a id="introduction"></a>Introduction
@@ -36,13 +37,13 @@ additional information to aid those implementing the Dataset-JSON API.
 The main purpose of the Dataset-JSON API is to create a standard API specification for Dataset-JSON. Conformant
 Dataset-JSON servers may support the entire standard specification or a read-only instance.
 
-The standard REST API specification is based on the Dataset-JSON version 1.1 specification found in [Dataset-JSON
+The standard REST API specification is based on the Dataset-JSON Version 1.1 specification found in [Dataset-JSON
 GitHub repository](https://github.com/cdisc-org/DataExchange-DatasetJson).
 
-## <a id="openapispecification"></a>Open API Specification
+## <a id="openapispecification"></a>OpenAPI Specification
 
 The primary technical documentation for the Dataset-JSON API is found in the
-[Open API Specification 3.1 (OAS) for the Dataset-JSON API](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json).
+[OpenAPI Specification 3.1 (OAS) for the Dataset-JSON API](https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/openapi/dataset-json-api-1-0.json).
 An [HTML version of the specification](https://html-preview.github.io/?url=https://github.com/cdisc-org/DataExchange-DatasetJson-API/blob/main/docs/dataset-json-api-1-0.html)
 has been generated as a human-readable representation. The machine-readable JSON version of the OAS Dataset-JSON API
 specification includes a machine-readable representation of the endpoints and JSON payloads that may be used by code
@@ -54,10 +55,10 @@ The specification focuses on data exchange to keep the API implementation simple
 to add additional features, such as filtering datasets for specific rows that meet a given criteria, but these
 advanced features are not part of the standard. Ease of implementation was a key design principle for the API specification.
 
-For those implementing the API, there are 2 paths to conformance with the standard
+For those implementing the API, there are 2 paths to conformance with the standard.
 
 1. Implement a read-only API by implementing the GET verbs.
-2. Implement a CRUD API that allows clients to Create, Read, Update, Delete, and append to datasets.
+2. Implement a CRUD API that allows clients to create, read, update, delete, and append to datasets.
 
 A read-only API implementation implements all the GET verbs, and not the other verbs. For example, an
 EDC system implementing the API may allow clients to retrieve datasets, but not to create or update datasets.
@@ -75,7 +76,7 @@ a server may store the datasets on a file server or maintain the study data used
 
 The Dataset-JSON API is a REST-based API specification. REST, or
 [Representational State Transfer](https://ics.uci.edu/~fielding/pubs/dissertation/top.htm), is an architectural style for
-distributed hypermedia systems first presented in Roy Fielding's 2000 dissertation. REST is the most widely implemented
+distributed hypermedia systems first presented in Roy Fielding's 2000 dissertation[1]. REST is the most widely implemented
 architecture for building web-based APIs.  
 
 ## <a id="httpverbs"></a>HTTP Verbs
@@ -310,14 +311,14 @@ The streamed NDJSON dataset uses the media type `application/x-ndjson`.
 ## <a id="apiidentifiers"></a>API Identifiers
 
 The Dataset-JSON API uses the `StudyOID` and `ItemGroupOID` as identifiers in the API. For example, to request a specific
-dataset the URL must contain the `StudyOID` and the `ItemGroupOID` to indicate the dataset of interest. Here's an example
-URL requesting the AE dataset for the CDISCPILOT01 study.
+dataset the URL must contain the `StudyOID` and the `ItemGroupOID` to indicate the dataset of interest. The following is
+an example URL requesting the AE dataset for the CDISCPILOT01 study.
 
 ```
 http://127.0.0.1:8000/studies/CDISCPILOT01/datasets/IG.AE
 ```
 
-In the above example, the `StudyOID` is CDISCPILOT01 and the `ItemGroupOID` is IG.AE. Since these OIDs, also used in an
+In this example, the `StudyOID` is CDISCPILOT01 and the `ItemGroupOID` is IG.AE. Since these OIDs, also used in an
 associated Define-XML file, are used in the URL, avoid using certain characters in the OIDs to better support usage in
 a URL, such as:
 
@@ -331,14 +332,14 @@ a URL, such as:
 
 ## <a id="hateoas"></a>HATEOAS
 
-HATEOAS, or Hypertext As The Engine of Application State, means that a REST API must provide hypermedia links in its
+HATEOAS, or Hypertext as the Engine of Application State, means that a REST API must provide hypermedia links in its
 responses, guiding clients through available actions and resources. The Dataset-JSON API does provide hyperlinks to inform
 clients of the available study and dataset resources. The API specification does not include a `_links` section to represent
 the hyperlinks, but the relevant URLs are available in the body of the response. Many REST APIs, such as the
 CDISC Library, include a `_links` section, but it was not included in the Dataset-JSON API specification to simplify the
 API implementation. To support HATEOAS, the URLs are available in the body of the responses.
 
-## <a id="metadataanddataonlyflags"></a>Metadata and Data Only Flags
+## <a id="metadataanddataonlyflags"></a>Metadata and Data-only Flags
 
 Clients may request to receive only the dataset metadata or only the dataset data. By default, responses include the
 metadata and data parts of the Dataset-JSON dataset. Depending on the usage scenario, it may be preferable to only
@@ -389,15 +390,13 @@ dataset is returned by default.
 - Many APIs will never read or write to a Dataset-JSON file, but instead will read and write to a data store and only use Dataset-JSON to send and receive data from API clients.
 - The current API specification supports Dataset-JSON v1.1.
 
-## <a id="glossaryandabbreviations"></a>Glossary and Abbreviations
+## <a id="references"></a>References
+1. Fielding RT. Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000.
 
+## <a id="glossaryandabbreviations"></a>Glossary and Abbreviations
+The following table lists some of the abbreviations and terms used in this document.
 <table title="Glossary and Abbreviations">
   <tbody>
-    <tr>
-      <th scope="col">Term</th>
-      <th scope="col">Stands for, plus Reference to CDISC Standard or source
-      of information</th>
-    </tr>
     <tr>
       <td>ADaM</td>
       <td>
@@ -410,6 +409,12 @@ dataset is returned by default.
       <td>API</td>
       <td>
         Application Programming Interface
+      </td>
+    </tr>
+    <tr>
+      <td>CDISC</td>
+      <td>
+        Clinical Data Interchange Standards Consortium
       </td>
     </tr>
     <tr>
@@ -426,6 +431,18 @@ dataset is returned by default.
       </td>
     </tr>
     <tr>
+      <td>EDC</td>
+      <td>
+        Electronic Data Capture
+      </td>
+    </tr>
+    <tr>
+      <td>HATEOAS</td>
+      <td>
+        Hypertext as the Engine of Application State
+      </td>
+    </tr>
+    <tr>
       <td>JSON</td>
       <td>
         JavaScript Object Notation
@@ -434,7 +451,25 @@ dataset is returned by default.
     <tr>
       <td>NDJSON</td>
       <td>
-        Newline delimited JSON
+        Newline Delimited JSON
+      </td>
+    </tr>
+    <tr>
+      <td>OAS</td>
+      <td>
+        OpenAPI Specification
+      </td>
+    </tr>
+    <tr>
+      <td>OID</td>
+      <td>
+        Object Identifier
+      </td>
+    </tr>
+    <tr>
+      <td>REST</td>
+      <td>
+        Representational State Transfer
       </td>
     </tr>
     <tr>
@@ -443,6 +478,18 @@ dataset is returned by default.
         Study Data Tabulation Model. CDISC Foundational standard for
         modeling data: <a href=
         "https://www.cdisc.org/standards/foundational/sdtm">https://www.cdisc.org/standards/foundational/sdtm</a>
+      </td>
+    </tr>
+    <tr>
+      <td>UAT</td>
+      <td>
+        User Acceptance Testing
+      </td>
+    </tr>
+    <tr>
+      <td>UG</td>
+      <td>
+        User Guide
       </td>
     </tr>
     <tr>
@@ -455,6 +502,12 @@ dataset is returned by default.
       <td>URL</td>
       <td>
         Uniform Resource Locator
+      </td>
+    </tr>
+    <tr>
+      <td>UTF</td>
+      <td>
+         Unicode Transformation Format
       </td>
     </tr>
   </tbody>
