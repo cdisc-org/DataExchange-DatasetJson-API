@@ -7,7 +7,7 @@
       "name": "MIT",
       "url": "https://opensource.org/license/mit/"
     },
-    "version": "0.0.1"
+    "version": "1.0"
   },
   "paths": {
     "/about": {
