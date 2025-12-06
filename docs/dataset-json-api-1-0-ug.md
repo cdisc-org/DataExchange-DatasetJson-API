@@ -2,7 +2,7 @@
 
 | Date         | Version | Summary of Changes |
 |--------------|---------|--------------------|
-| 2025-08-07   | 1.0     | Draft              |
+| 2025-12-11   | 1.0     | Final              |
 
 - [Introduction](#introduction)
 - [OpenAPI Specification](#openapispecification)
